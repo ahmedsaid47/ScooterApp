@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scooter Ekle</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000; /* Siyah arka plan */
+            color: #fff; /* Beyaz metin rengi */
+            padding: 20px;
+        }
+
+        h1 {
+            color: #4CAF50; /* Yeşil başlık rengi */
+        }
+
+        form {
+            background: #1c1c1c; /* Koyu gri form arka planı */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Yeşil kenarlık gölgesi */
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #9c9c9c; /* Açık gri metin rengi */
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #333; /* Koyu kenarlık */
+            background: #282828; /* Koyu gri giriş alanı arka planı */
+            color: #fff; /* Beyaz metin rengi */
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50; /* Yeşil buton rengi */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3e8e41; /* Koyu yeşil buton rengi */
+        }
+    </style>
+</head>
+<body>
+    <h1>Scooter Ekle</h1>
+
+    <form action="{% url 'form' %}" method="post">
+        {% csrf_token %}
+        
+        <!-- Marka -->
+        <label for="marka">Marka:</label>
+        <select id="marka" name="marka">
+            {% for marka_id, marka in Marka %}
+                <option value="{{ marka_id }}">{{ marka }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <!-- Model -->
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model"><br><br>
+
+        <!-- MotorGucumax -->
+        <label for="motor_gucu_max">Motor Gücü Max:</label>
+        <input type="number" id="motor_gucu_max" name="motor_gucu_max"><br><br>
+
+        <!-- Menzilmax -->
+        <label for="menzil_max">Menzil Max:</label>
+        <input type="number" id="menzil_max" name="menzil_max"><br><br>
+
+        <!-- Hizmax -->
+        <label for="hiz_max">Hız Max:</label>
+        <input type="number" id="hiz_max" name="hiz_max"><br><br>
+
+        <!-- TasimaKapasitesi -->
+        <label for="tasima_kapasitesi">Taşıma Kapasitesi:</label>
+        <input type="number" id="tasima_kapasitesi" name="tasima_kapasitesi"><br><br>
+
+        <!-- Tekerlek -->
+        <label for="tekerlek">Tekerlek:</label>
+        <select id="tekerlek" name="tekerlek">
+            {% for tekerlek_id, tekerlek in Tekerlek %}
+                <option value="{{ tekerlek_id }}">{{ tekerlek }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <!-- TekerlekSayisi -->
+        <label for="tekerlek_sayisi">Tekerlek Sayısı:</label>
+        <select id="tekerlek_sayisi" name="tekerlek_sayisi">
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select><br><br>
+
+        <!-- LastikEbati -->
+        <label for="lastik_ebati">Lastik Ebatı:</label>
+        <input type="text" id="lastik_ebati" name="lastik_ebati"><br><br>
+
+        <!-- Katlanabilme -->
+        <label for="katlanabilme">Katlanabilme:</label>
+        <select id="katlanabilme" name="katlanabilme">
+            <option value="Evet">Evet</option>
+            <option value="Hayır">Hayır</option>
+        </select><br><br>
+
+        <!-- FrenTeknolojisi -->
+        <label for="fren_teknolojisi">Fren Teknolojisi:</label>
+        <select id="fren_teknolojisi" name="fren_teknolojisi">
+            {% for fren_id, fren in Fren %}
+                <option value="{{ fren_id }}">{{ fren }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <!-- ÖnFren -->
+        <label for="on_fren">Ön Fren:</label>
+        <select id="on_fren" name="on_fren">
+            {% for onfren_id, onfren in Onfren %}
+                <option value="{{ onfren_id }}">{{ onfren }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <!-- ArkaFren -->
+        <label for="arka_fren">Arka Fren:</label>
+        <select id="arka_fren" name="arka_fren">
+            {% for arkafren_id, arkafren in Arkafren %}
+                <option value="{{ arkafren_id }}">{{ arkafren }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <!-- BataryaVoltaji -->
+        <label for="batarya_voltaji">Batarya Voltajı:</label>
+        <input type="number" id="batarya_voltaji" name="batarya_voltaji"><br><br>
+
+        <!-- BataryaAkimi -->
+        <label for="batarya_akimi">Batarya Akımı:</label>
+        <input type="number" id="batarya_akimi" name="batarya_akimi"><br><br>
+
+        <!-- TirmanmaAcisi -->
+        <label for="tirmanma_acisi">Tırmanma Açısı:</label>
+        <input type="number" id="tirmanma_acisi" name="tirmanma_acisi"><br><br>
+
+        <!-- KorumaSertifikasyonu -->
+        <label for="koruma_sertifikasyonu">Koruma Sertifikasyonu:</label>
+        <select id="koruma_sertifikasyonu" name="koruma_sertifikasyonu">         
+            {% for sertifikasyon_id, sertifikasyon in Sertifikasyon %}
+                <option value="{{ sertifikasyon_id }}">{{ sertifikasyon }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <!-- Renk -->
+        <label for="renk">Renk:</label>
+        <select id="renk" name="renk">
+            {% for renk_id, renk in Renk %}
+                <option value="{{ renk_id }}">{{ renk }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <!-- Agirlik -->
+        <label for="agirlik">Ağırlık:</label>
+        <input type="number" id="agirlik" name="agirlik" step="0.1"><br><br>
+        
+        <!-- Site Seçimi -->
+        <label for="site">Satın Alma Sitesi:</label>
+        <select id="site" name="site">
+            {% for site_id, site in Site %}
+                <option value="{{ site_id }}">{{ site }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <!-- Ürün Fiyatı -->
+        <label for="urun_fiyati">Ürün Fiyatı:</label>
+        <input type="number" id="urun_fiyati" name="urun_fiyati" step="0.01"><br><br>
+
+        <!-- Ürün Linki -->
+        <label for="urun_linki">Ürün Linki:</label>
+        <input type="text" id="urun_linki" name="urun_linki"><br><br>
+
+
+        <input type="submit" value="Güncelle">
+    </form>
+</body>
+</html>
